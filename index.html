@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" id="theme" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="plugin/highlight/monokai.css"
+      id="highlight-theme"
+    />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1 style="text-align: left">Rust</h1>
+          <h5 style="text-align: left">
+            A language empowering everyone to build reliable and efficient
+            software
+          </h5>
+          <p></p>
+          <p>
+            <br />
+            <br />
+            <small
+              >Introduce by a beginner for Beginners! <br />
+              Created by
+              <a href="">Ben Hu</a>
+            </small>
+          </p>
+        </section>
+
+        <section>
+          <h2>My Motivations</h2>
+          <ul>
+            <li>It’s a System language to build low-level stuff</li>
+            <ul>
+              <li>
+                Part of FireFox engine, Web Assembly, Deno, maybe Linux and
+                more..
+              </li>
+              <li>
+                <a
+                  href="https://blog.subnetzero.io/post/building-language-vm-part-00/"
+                  >So You Want to Build a Language VM
+                </a>
+              </li>
+              <li>
+                <a href="https://os.phil-opp.com/">Writing an OS in Rust </a>
+              </li>
+              <li>
+                <a
+                  href="https://limpet.net/mbrubeck/2014/08/08/toy-layout-engine-1.html"
+                  >Let's build a browser engine! Part 1: Getting started
+                </a>
+              </li>
+              <li>and more..</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section>
+          <h2>What is Rust: a programming language</h2>
+
+          <ul>
+            <li>Multi-paradigm</li>
+            <li>Designed for performance and safety</li>
+            <li>
+              Originally designed by Graydon Hoare at Mozilla Research, with
+              contributions from Dave Herman, Brendan Eich, and others.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <img src="./images/rust-cicrcle.png" alt="rust-cicrcle.png" />
+          <h2>Basic Syntax</h2>
+        </section>
+
+        <section data-auto-animate>
+          <h2 data-id="code-title">Varibales and mutability</h2>
+
+          <pre
+            data-id="code-animation"
+          ><code class="hljs" data-trim data-line-numbers="2|4"><script type="text/template">
+fn main() {
+    let x = 5;
+    println!("result:{}", x);
+    x = 6;
+    println!("result:{}", x);
+}
+					</script></code></pre>
+        </section>
+
+        <section>
+          <h2 data-id="code-title">Compiler error</h2>
+
+          <pre
+            data-id="code-animation"
+          ><code class="hljs"><script type="text/template">
+error[E0384]: cannot assign twice to immutable variable `x`
+ --> src\main.rs:4:5
+  |
+2 |     let x = 5;
+  |         -
+  |         |
+  |         first assignment to `x`
+  |         help: make this binding mutable: `mut x`
+3 |     println!("result:{}", x);
+4 |     x = 6;
+					</script></code></pre>
+        </section>
+
+        <section data-auto-animate>
+          <h2 data-id="code-title">keyword: mut</h2>
+
+          <pre
+            data-id="code-animation"
+          ><code class="hljs" data-trim data-line-numbers="2"><script type="text/template">
+fn main() {
+    let mut x = 5;
+    println!("result:{}", x);
+    x = 6;
+    println!("result:{}", x);
+}
+					</script></code></pre>
+        </section>
+
+        <section data-auto-animate>
+          <h2 data-id="code-title">You can do shadowing</h2>
+          <pre
+            data-id="code-animation"
+          ><code class="hljs" data-trim data-line-numbers="2|3|4"><script type="text/template">
+    fn main() {
+    let x = 5;
+    let x = x + 5;
+    let x = x + 5;
+    println!("result:{}", x);
+}
+
+    </script></code></pre>
+        </section>
+
+        <section>
+          <img src="./images/rust-cicrcle.png" alt="rust-cicrcle.png" />
+          <h2>Basic Data Type</h2>
+          <p>
+            Rust is a statically typed language, so it must know the types of
+            all variables at compile time.
+          </p>
+        </section>
+
+        <section>
+          <h2>Common Data Types in Rust</h2>
+
+          <ul>
+            <li>Scalar Types</li>
+            <ul>
+              <li>integers</li>
+              <li>floating point numbers</li>
+              <li>Booleans</li>
+              <li>characters</li>
+            </ul>
+            <li>Compound Data type</li>
+            <ul>
+              <li>Tuple</li>
+              <li>Array</li>
+              <li>Vector</li>
+            </ul>
+            <li>Custom Data Type</li>
+            <ul>
+              <li>Struct, Enum ..</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Scalar Types</h2>
+          <ul>
+            <li>
+              Integer Type: 8, 16, 32, 64, 128 and arch (signed and unsigned)
+            </li>
+            <li>Floating Point: f32 and f64 (IEEE-754)</li>
+            <li>Numeric Operations: +, - , *, /, %(remainder)</li>
+            <li>The Boolean Type: true, false</li>
+            <li>
+              The Character Type: single quote, ‘c’, our bytes in size,
+              represents a Unicode Scalar Value
+            </li>
+          </ul>
+        </section>
+
+        <section data-auto-animate>
+          <h2 data-id="code-title">Compound Types: Tuple</h2>
+          <pre
+            data-id="code-animation"
+          ><code class="hljs" data-trim data-line-numbers="2|3|4"><script type="text/template">
+fn main() {
+    let tupOne: (i32, f64, u8) = (42, 4.2, 4)
+    let tupTwo = (42, 4.2, 4);
+    let (x, y, z) = tupTwo;
+    println!("result:{}, {}, {}", x, y, z);
+}
+        </script></code></pre>
+        </section>
+
+        <section data-auto-animate>
+          <h2 data-id="code-title">Array</h2>
+          <p>length is fixed; same type</p>
+          <pre
+            data-id="code-animation"
+          ><code class="hljs" data-trim data-line-numbers="2"><script type="text/template">
+fn main() {
+    let a1 = [1, 2, 3, 4, 5];
+    let first = a1[0];
+    let second = a1[1];
+    println!("result:{}, {}", first, second);
+}
+
+        </script></code></pre>
+        </section>
+
+        <section data-auto-animate>
+          <h2 data-id="code-title">Vector</h2>
+          <p>length is dynamically allocated</p>
+          <pre
+            data-id="code-animation"
+          ><code class="hljs" data-trim data-line-numbers="2|3|4|5"><script type="text/template">
+fn main() {
+    let sum_up_vec_plus_hundred = vec![1, 2, 3, 4, 5]
+        .iter()
+        .map(|x| x + 100)
+        .fold(0, |x, y| x + y);
+    println!("result:{}", sum_up_vec_plus_hundred);
+}
+
+        </script></code></pre>
+        </section>
+
+        <section>
+          <img src="./images/rust-cicrcle.png" alt="rust-cicrcle.png" />
+          <h2>Control flow</h2>
+          <p>if, else, loop, while</p>
+        </section>
+
+        <section data-auto-animate>
+          <h2 data-id="code-title">if else</h2>
+          <pre
+            data-id="code-animation"
+          ><code class="hljs" data-trim data-line-numbers="3|5|7"><script type="text/template">
+fn main() {
+    let num = 7;
+    if num % 4 == 0 {
+        println!("num is divisible by 4");
+    } else if num % 3 == 0 {
+        println!("num is divisible by 3");
+    } else {
+        println!("num is NOT divisible by 3 or 4");
+    }
+}
+        </script></code></pre>
+        </section>
+
+        <section data-auto-animate>
+          <h2 data-id="code-title">if let</h2>
+          <pre
+            data-id="code-animation"
+          ><code class="hljs" data-trim data-line-numbers="2|3"><script type="text/template">
+fn main() {
+    let condition = true;
+    let num = if condition { 5 } else { 3 };
+    println!("result:{}", num);
+}
+</script></code></pre>
+        </section>
+
+        <section data-auto-animate>
+          <h2 data-id="code-title">while</h2>
+          <pre
+            data-id="code-animation"
+          ><code class="hljs" data-trim data-line-numbers="2|3|5"><script type="text/template">
+fn main() {
+    let mut num = 3;
+    while num != 0 {
+        println!("result:{}", num);
+        num -= 1;
+    }
+    println!("result:{}", num);
+}
+
+        </script></code></pre>
+        </section>
+
+        <section data-auto-animate>
+          <h2 data-id="code-title">Loop</h2>
+          <pre
+            data-id="code-animation"
+          ><code class="hljs" data-trim data-line-numbers="2|3|4|6"><script type="text/template">
+fn main() {
+    let mut count = 0;
+    let result = loop {
+        count += 1;
+        if count == 10 {
+            break count * 2;
+        }
+    };
+    println!("result:{}", result);
+}
+        </script></code></pre>
+        </section>
+
+        <section data-auto-animate>
+          <h2 data-id="code-title">Function</h2>
+          <pre
+            data-id="code-animation"
+          ><code class="hljs" data-trim data-line-numbers="7|8|4"><script type="text/template">
+fn main() {
+    let w = 30;
+    let h = 50;
+    println!("area: {}", area(w, h));
+}
+
+fn area(w: u32, h: u32) -> u32 {
+    w * h
+}
+
+        </script></code></pre>
+        </section>
+
+        <section>
+          <img src="./images/rust-cicrcle.png" alt="rust-cicrcle.png" />
+          <h2>Ownership System</h2>
+          <p>Rust way to manage memory</p>
+        </section>
+
+        <section>
+          <h2>Other Languages</h2>
+          <ul>
+            <li>No Garbage Collector (GC)</li>
+            <ul>
+              <li>C</li>
+              <li>Fast and preformat</li>
+              <li>Required work to handle, bug of source</li>
+            </ul>
+            <li>With GC</li>
+            <ul>
+              <li>Python, Java, Go, Javascript,...</li>
+              <li>Allow we focus on application logic</li>
+              <li>sacrifices some speed</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Rust ownership System</h2>
+          <ul>
+            <li>Goal is to have advantages of both worlds</li>
+
+            <li>Rust compiler do most of GC work</li>
+            <ul>
+              <li>
+                Compiler handle allocate and work at compile time (No effect on
+                run-time performace)
+              </li>
+              <li>Require we code in a set of rules</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section>
+          <h2>3 Rules</h2>
+
+          <ol>
+            <li>Each value has a variable that’s called its owner.</li>
+            <li>There can only be ONE owner at a time.</li>
+            <li>
+              When the owner goes out of scope, the value will be dropped (free)
+            </li>
+          </ol>
+        </section>
+
+        <section data-auto-animate>
+          <h2 data-id="code-title">What is out of scope?</h2>
+          <pre
+            data-id="code-animation"
+          ><code class="hljs" data-trim data-line-numbers="3|5"><script type="text/template">
+fn main() {
+   {
+       let x = 50
+   }
+   println!("result:{}",x);
+}
+</script></code></pre>
+        </section>
+
+        <section data-auto-animate>
+          <h2 data-id="code-title">out of scope error</h2>
+          <pre
+            data-id="code-animation"
+          ><code class="hljs"><script type="text/template">
+error[E0425]: cannot find value `x` in this scope
+ --> src\main.rs:6:25
+  |
+6 |    println!("result:{}",x);
+  |                         ^ not found in this scope
+        </script></code></pre>
+        </section>
+
+        <section data-auto-animate>
+          <h2 data-id="code-title">is this code working?</h2>
+          <p>we have two ownership (a1, a2) for one value</p>
+          <pre
+            data-id="code-animation"
+          ><code class="hljs" data-trim data-line-numbers="2|3"><script type="text/template">
+fn main() {
+    let a1 = String::from("hello");
+    let a2 = a1;
+
+    println!("result:{}", a1);
+    println!("result:{}", a2);
+}
+        </script></code></pre>
+        </section>
+
+        <section data-auto-animate>
+          <h2 data-id="code-title">compiler error</h2>
+          <pre
+            data-id="code-animation"
+          ><code class="hljs"><script type="text/template">
+
+error[E0382]: borrow of moved value: `a1`
+ --> src\main.rs:5:27
+  |
+2 |     let a1 = String::from("hello");
+  |         -- move occurs because `a1` has type `String`, which does not implement the `Copy` trait
+3 |     let a2 = a1;
+  |              -- value moved here
+4 |
+5 |     println!("result:{}", a1);
+  |                           ^^ value borrowed here after move
+
+        </script></code></pre>
+        </section>
+
+        <section data-auto-animate>
+          <h2 data-id="code-title">deep copy</h2>
+          <pre
+            data-id="code-animation"
+          ><code class="hljs" data-trim data-line-numbers="3"><script type="text/template">
+fn main() {
+    let a1 = String::from("hello");
+    let a2 = a1.clone();
+
+    println!("result:{}", a1);
+    println!("result:{}", a2);
+}
+
+        </script></code></pre>
+        </section>
+
+        <section data-auto-animate>
+          <h2 data-id="code-title">use & to borrow</h2>
+          <pre
+            data-id="code-animation"
+          ><code class="hljs" data-trim data-line-numbers="3"><script type="text/template">
+fn main() {
+    let a1 = String::from("hello");
+    let a2 = &a1;
+
+    println!("result:{}", a1);
+    println!("result:{}", a2);
+}
+
+        </script></code></pre>
+        </section>
+
+        <section data-auto-animate>
+          <h2 data-id="code-title">Passing to Fn Arg is like Assignment</h2>
+          <pre
+            data-id="code-animation"
+          ><code class="hljs" data-trim data-line-numbers="3|7|9|4"><script type="text/template">
+fn main() {
+    let a1 = String::from("hello");
+    func(a1)
+    println!("result:{}", a1);
+}
+
+fn func(s: String){
+    println!("result:{}",s);
+}
+
+        </script></code></pre>
+        </section>
+
+        <section data-auto-animate>
+          <h2 data-id="code-title">use & to fix it</h2>
+          <pre
+            data-id="code-animation"
+          ><code class="hljs" data-trim data-line-numbers="3|7|4"><script type="text/template">
+fn main() {
+    let a1 = String::from("hello");
+    func(&a1);
+    println!("result:{}", a1);
+}
+
+fn func(s: &String) {
+    println!("result:{}", s);
+}
+
+        </script></code></pre>
+        </section>
+
+        <section>
+          <h2>things about borrowing and ref..</h2>
+
+          <ol>
+            <li>Unlimited amount of immutable borrows at any given time.</li>
+
+            <li>One mutable borrow at any given time.</li>
+
+            <li>
+              CAN NOT mix mutable borrows and immutable borrows at the same
+              time.
+            </li>
+          </ol>
+
+          <p>
+            <em>
+              All of this is to about preventing Data Race, which is about
+              accesses the same memory location concurrently and the variable
+              value become hard to predict
+            </em>
+          </p>
+        </section>
+
+        <section data-auto-animate>
+          <h2 data-id="code-title">FYI</h2>
+          <p>Rust will auto copy scalar type</p>
+          <pre
+            data-id="code-animation"
+          ><code class="hljs" data-trim data-line-numbers="3|6"><script type="text/template">
+fn main() {
+    let a1 = 5;
+    let a2 = a1;
+
+    println!("result:{}", a1);
+    println!("result:{}", a2);
+}
+
+        </script></code></pre>
+        </section>
+
+        <section data-auto-animate>
+          <h2 data-id="code-title">One last thing...dangling reference</h2>
+          <pre
+            data-id="code-animation"
+          ><code class="hljs" data-trim data-line-numbers="2|6|7|9|3"><script type="text/template">
+fn main() {
+    let s = dangling();
+    println!("result:{}", s);
+}
+
+fn dangling() -> &String {
+    let s = String::from("Hello");
+
+    &s
+}
+
+        </script></code></pre>
+        </section>
+
+        <!-- below is about null part -->
+
+        <section>
+          <img src="./images/rust-cicrcle.png" alt="rust-cicrcle.png" />
+          <h2>Null</h2>
+          <p>Billion dollar Mistake</p>
+        </section>
+
+        <section>
+          <h2>Tony Hoare, the inventor of null</h2>
+          <p>
+            <small
+              >In his 2009 presentation “Null References: The Billion Dollar
+              Mistake,” he said..
+            </small>
+          </p>
+          <blockquote>
+            <small>
+              &ldquo;I call it my billion dollar mistake. At that time, I was
+              designing the first comprehensive type system for references in an
+              object-oriented language. My goal was to ensure that all use of
+              references should be absolutely safe, with checking performed
+              automatically by the compiler. But I couldn’t resist the
+              temptation to put in a null reference, simply because it was so
+              easy to implement. This has led to innumerable errors,
+              vulnerabilities, and system crashes, which have probably caused a
+              billion dollars of pain and damage in the last forty years.
+              &rdquo;
+            </small>
+          </blockquote>
+        </section>
+
+        <section>
+          <h2>The problem with null/Undefined...</h2>
+          <p>
+            It’s extremely easy to make this kind of error. when the app is
+            become more and more complicated!
+          </p>
+          <img src="./images/undef.png" />
+        </section>
+
+        <section>
+          <h2>We still need to have this concept..</h2>
+          <ul>
+            <li>
+              The concept is still useful: a value that is currently invalid or
+              absent for some reason.
+            </li>
+            <li>
+              The problem is how to implement the null/undefined mechanism!
+            </li>
+          </ul>
+        </section>
+
+        <section data-auto-animate>
+          <h2 data-id="code-title">Option Type</h2>
+          <p>
+            In Rust, you won't see this kind of error when app run!
+            <br />
+            I encourage you to check how Rust handle it!
+          </p>
+          <pre
+            data-id="code-animation"
+          ><code class="hljs" ><script type="text/template">
+fn main() {
+    let five = Some(5);
+    let _six = add_one(five);
+    let _none = add_one(None);
+}
+
+fn add_one(x: Option<i32>) -> Option<i32> {
+    match x {
+        None => None,
+        Some(i) => Some(i + 1),
+    }
+}
+        </script></code></pre>
+        </section>
+
+        <!-- thank you page -->
+        <section>
+          <a href="https://revealjs.com">
+            <img
+              src="./images/tks2.png"
+              alt="tks2 logo"
+              style="
+                height: 180px;
+                margin: 0 auto 4rem auto;
+                background: transparent;
+              "
+              class="demo-logo"
+            />
+          </a>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+
+      // Adding mouse click navigation
+      // https://www.raymondcamden.com/2012/10/20/Adding-mouse-click-navigation-to-revealjs
+      // begin of mouse click part
+      //   window.addEventListener('mousedown', handleClick, false);
+      //   window.addEventListener(
+      //     'contextmenu',
+      //     function (e) {
+      //       e.preventDefault();
+      //     },
+      //     false
+      //   );
+
+      //   function handleClick(e) {
+      //     e.preventDefault();
+      //     if (e.button === 0) Reveal.next();
+      //     if (e.button === 2) Reveal.prev();
+      //   }
+      // end of mouse click part
+    </script>
+  </body>
+</html>
