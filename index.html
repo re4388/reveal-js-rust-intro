@@ -11,7 +11,9 @@
 
     <link rel="stylesheet" href="dist/reset.css" />
     <link rel="stylesheet" href="dist/reveal.css" />
-    <link rel="stylesheet" href="dist/theme/black.css" id="theme" />
+    <!-- <link rel="stylesheet" href="dist/theme/black.css" id="theme" /> -->
+    <!-- <link rel="stylesheet" href="dist/theme/white.css" id="theme" /> -->
+    <link rel="stylesheet" href="dist/theme/sky.css" id="theme" />
 
     <!-- Theme used for syntax highlighted code -->
     <link
@@ -162,21 +164,16 @@ fn main() {
         </section>
 
         <section>
-          <h2>Common Data Types in Rust</h2>
+          <h2>Common Data Types</h2>
 
           <ul>
             <li>Scalar Types</li>
             <ul>
-              <li>integers</li>
-              <li>floating point numbers</li>
-              <li>Booleans</li>
-              <li>characters</li>
+              <li>integers, floating point, Booleans, characters</li>
             </ul>
             <li>Compound Data type</li>
             <ul>
-              <li>Tuple</li>
-              <li>Array</li>
-              <li>Vector</li>
+              <li>Tuple, Array, Vector</li>
             </ul>
             <li>Custom Data Type</li>
             <ul>
@@ -202,7 +199,7 @@ fn main() {
         </section>
 
         <section data-auto-animate>
-          <h2 data-id="code-title">Compound Types: Tuple</h2>
+          <h2 data-id="code-title">Tuple</h2>
           <pre
             data-id="code-animation"
           ><code class="hljs" data-trim data-line-numbers="2|3|4"><script type="text/template">
@@ -546,7 +543,7 @@ fn func(s: &String) {
 
         <section data-auto-animate>
           <h2 data-id="code-title">FYI</h2>
-          <p>Rust will auto copy scalar type</p>
+          <p>Rust will auto copy scalar type, so this code works</p>
           <pre
             data-id="code-animation"
           ><code class="hljs" data-trim data-line-numbers="3|6"><script type="text/template">
@@ -588,29 +585,59 @@ fn dangling() -> &String {
           <p>Billion dollar Mistake</p>
         </section>
 
-        <section>
+        <section >
           <h2>Tony Hoare, the inventor of null</h2>
           <p>
-            <small
-              >In his 2009 presentation “Null References: The Billion Dollar
+
+              In his 2009 presentation “Null References: The Billion Dollar
               Mistake,” he said..
-            </small>
+
           </p>
-          <blockquote>
-            <small>
-              &ldquo;I call it my billion dollar mistake. At that time, I was
-              designing the first comprehensive type system for references in an
-              object-oriented language. My goal was to ensure that all use of
+
+        </section>
+
+        <section data-auto-animate>
+          <p style="width: auto; font-size: 30px; text-align: left;">
+              &ldquo;My goal was to ensure that all use of
               references should be absolutely safe, with checking performed
-              automatically by the compiler. But I couldn’t resist the
+              automatically by the compiler.
+
+
+          </p>
+        </section>
+        <section data-auto-animate>
+          <p style="width: auto; font-size: 30px; text-align: left;">
+              &ldquo;My goal was to ensure that all use of
+              references should be absolutely safe, with checking performed
+              automatically by the compiler.
+          </p>
+           <p style="width: auto; font-size: 30px; text-align: left;">
+  <br>But I couldn’t resist the
               temptation to put in a null reference, simply because it was so
-              easy to implement. This has led to innumerable errors,
+              easy to implement.
+           </p>
+        </section>
+        <section data-auto-animate>
+          <p style="width: auto; font-size: 30px; text-align: left;">
+              &ldquo;My goal was to ensure that all use of
+              references should be absolutely safe, with checking performed
+              automatically by the compiler.
+          </p>
+           <p style="width: auto; font-size: 30px; text-align: left;">
+  But I couldn’t resist the
+              temptation to put in a null reference, simply because it was so
+              easy to implement.
+           </p>
+           <p style="width: auto; font-size: 30px; text-align: left;">
+               This has led to innumerable errors,
               vulnerabilities, and system crashes, which have probably caused a
               billion dollars of pain and damage in the last forty years.
               &rdquo;
-            </small>
-          </blockquote>
+           </p>
         </section>
+
+
+
 
         <section>
           <h2>The problem with null/Undefined...</h2>
@@ -637,9 +664,9 @@ fn dangling() -> &String {
         <section data-auto-animate>
           <h2 data-id="code-title">Option Type</h2>
           <p>
-            In Rust, you won't see this kind of error when app run!
-            <br />
-            I encourage you to check how Rust handle it!
+              In Rust,you won't see this kind of error when app run!
+              I encourage you to check how Rust handle it!
+            </>
           </p>
           <pre
             data-id="code-animation"
@@ -686,6 +713,17 @@ fn add_one(x: Option<i32>) -> Option<i32> {
       // - https://revealjs.com/initialization/
       // - https://revealjs.com/config/
       Reveal.initialize({
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-2.jpg', // e.g. "https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg"
+
+        // parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px" - currently only pixels are supported (don't use % or auto)
+
+        // // Number of pixels to move the parallax background per slide
+        // // - Calculated automatically unless specified
+        // // - Set to 0 to disable movement along an axis
+        // parallaxBackgroundHorizontal: 200,
+        // parallaxBackgroundVertical: 50,
+
+
         hash: true,
 
         // Learn about plugins: https://revealjs.com/plugins/
